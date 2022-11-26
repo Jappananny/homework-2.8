@@ -1,7 +1,10 @@
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class Main {
+    private static Random RANDOM = new Random();
+
     public static void main(String[] args) throws ProductException {
 
         Product bamamas = new Product("Банан",89.90,0.5);
@@ -25,6 +28,24 @@ public class Main {
         Recipes fireNeil = new Recipes("Жаренные гвозди",48.99,productS);
         trade.add(fireNeil);
         System.out.println(trade);
+        //Задача № 3
+        Set<Integer> number = new HashSet<>();
+        Set<Integer> numberRemuve = new HashSet<>();
+        for (int i=1; i <=20;i++){
+            number.add(RANDOM.nextInt(1001));
+        }
+        for (Integer number1: number) {
+            if (!(number1 % 2 == 0)){
+            numberRemuve.add(number1);
+            } else {
+                System.out.print(number1+" ");
+            }
+        }
+        for (Integer number1: numberRemuve) {
+            number.remove(number1);
+
+
+        }
 
 
 
