@@ -9,17 +9,22 @@ public class Product {
     private String name;
     private double priceForKillo;
     private double killo;
+    private double allcost;
     private boolean buy;
 
 
     public Product(String name,double priceForKillo, double killo) throws ProductException {
-        if (name.length() <= 0 || name == null)
-            throw new ProductException("Что за продукт");
+        if (name.length() == 0 || name == null)
+            throw new ProductException("Что за продукт ?");
         else {
             this.name = name;
         }
-        this.priceForKillo = priceForKillo * killo;
+        this.priceForKillo = priceForKillo;
         this.killo = killo;
+        this.allcost = priceForKillo * killo;
+    }
+    public void checkBuy(){
+        this.buy = true;
     }
     public void buy() {
         buy = true;
@@ -37,7 +42,7 @@ public class Product {
     }
     @Override
     public String toString() {
-        return "Продукт " + this.name + ", стоит " + this.priceForKillo + " руб. и весит "
-                + this.killo + " кг.";
+        return "Продукт " + name + ", стоит " + priceForKillo + " руб. за киллограмм и весит "
+                + killo + " кг. общая стоимость " + allcost + " руб.";
     }
 }

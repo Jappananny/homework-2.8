@@ -1,26 +1,28 @@
 
 import lombok.Getter;
+import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 @Getter
+@Setter
 public class RecipesService {
-    private final Set<Recipes> resipesProduct = new HashSet<>();
+    private final Set<Recipes> recipesProduct = new HashSet<>();
 
     public boolean add(Recipes recipes) throws ProductException {
-        if (resipesProduct.contains(recipes)) {
+        if (recipesProduct.contains(recipes)) {
             throw new ProductException("Такой рецепт уже есть в списке!");
         } else {
-            resipesProduct.add(recipes);
+            recipesProduct.add(recipes);
         } return true;
     }
+    public void remove(Recipes recipes){
+        recipesProduct.remove(recipes);
+        System.out.println("Рецепт " + recipes + " удален.");
+    }
+
     @Override
     public String toString() {
-        String allProducts = null;
-        for (Recipes recipes : this.resipesProduct) {
-            allProducts = allProducts + recipes;
-        }
-        return allProducts;
+        return recipesProduct.toString().replace("[","").replace("]","");
     }
 }

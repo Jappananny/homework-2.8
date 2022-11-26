@@ -1,15 +1,17 @@
+
 import lombok.Getter;
+
 import java.util.HashSet;
 import java.util.Set;
 @Getter
-public class ProductS {
+public class ProductServise {
     private final Set<Product> products = new HashSet<>();
 
     public boolean add(Product product) throws ProductException {
         if (!products.add(product)) {
             throw new ProductException("Этот продукт уже есть в списке");
         }
-        product.buy();
+        product.checkBuy();
         return true;
     }
     public void remove(Product d) {
@@ -18,8 +20,8 @@ public class ProductS {
 
     @Override
     public String toString() {
-        String allProducts = null;
-        for (Product product : this.products) {
+        String allProducts = "";
+        for (Product product : products){
             allProducts = allProducts + product;
         }
         return allProducts;

@@ -1,23 +1,21 @@
 
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.Objects;
-import java.util.Set;
 @Getter
 @Setter
 public class Recipes {
-    private static double MIN_PRICE = 0;
+    private double MIN_PRICE = 0;
     private String nameRecipes;
     private double allPrices;
-    private Set<Product> products;
+    private ProductServise productServise;
 
-    public Recipes(String nameRecipes, double allPrices, Set<Product> products) {
+    public Recipes(String nameRecipes, double allPrices, ProductServise productServise) {
 
         this.nameRecipes = nameRecipes;
-        this.products = products;
-        for (Product product1 : products) {
-            MIN_PRICE += allPrices;
+        this.productServise = productServise;
+        for (Product product1 : productServise.getProducts()) {
+            MIN_PRICE += product1.getAllcost();
         }
         this.allPrices = MIN_PRICE;
 
@@ -29,7 +27,7 @@ public class Recipes {
         if (o == null || getClass() != o.getClass()) return false;
         Recipes recipes = (Recipes) o;
         return Double.compare(recipes.allPrices, allPrices) == 0 && Objects.equals(nameRecipes, recipes.nameRecipes)
-                && Objects.equals(products, recipes.products);
+                && Objects.equals(productServise, recipes.productServise);
     }
 
     @Override
@@ -38,8 +36,7 @@ public class Recipes {
     }
     @Override
     public String toString() {
-        return "Продукт " + this.nameRecipes + ", стоит " + this.allPrices + " руб. и состоит из "
-                + this.products + ".";
+        return productServise.toString().replace("[","").replace("]","");
     }
 
 }
