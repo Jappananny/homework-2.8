@@ -1,7 +1,4 @@
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     private static Random RANDOM = new Random();
@@ -83,6 +80,23 @@ public class Main {
             System.out.println(itr.next());
         }
         System.out.println("======================================================");
+        Set<Passport> passportNumbers = new HashSet<>();
+        Passport vasja = new Passport(Collections.singleton("39 19544"),"Василий", "Весарионович",
+                "Пух", "19.04.1988");
+        Passport vika = new Passport(Collections.singleton("45 23121"),"Виктория","Олеговна",
+                "Вагнер","16.07.2002");
+        Passport vsevolod = new Passport(Collections.singleton("51 78634"),"Всеволод","Аришунян",
+                "Дерикашвилле","01.00.1997");
+
+        passportNumbers.add(vasja);
+        passportNumbers.add(vika);
+        passportNumbers.add(vsevolod);
+        for (Passport passportNumber : passportNumbers) {
+            System.out.println(passportNumber);
+        }
+        System.out.println("Паспорт: " + Passport.find(passportNumbers, "39 23423"));
+
+
 
 
 
